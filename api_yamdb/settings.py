@@ -4,11 +4,11 @@ from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'p&l%385148kslhtyn^##a1)ilz@4zqj=rq&agdol^##zgl9(vs'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'secret')
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['178.154.240.35', 'localhost', '94.180.117.216']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'reviews',
@@ -62,7 +62,7 @@ WSGI_APPLICATION = 'api_yamdb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DB_ENGINE'),
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
@@ -70,7 +70,6 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
